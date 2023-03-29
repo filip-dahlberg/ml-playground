@@ -1,12 +1,12 @@
 import pytube
 import torch
-import librosa
+import soundfile as sf
 from transformers import Wav2Vec2ForCTC, Wav2Vec2Tokenizer
 
 # Download the YouTube video using pytube
 video_url = "https://www.youtube.com/watch?v=M6VWprJ8sgI"
 youtube = pytube.YouTube(video_url)
-audio_stream = youtube.streams.filter(only_audio=True).first()
+audio_stream = youtube.streams.filter(only_audio=True).all()
 audio_stream.download(output_path="./", filename="audio.mp3")
 
 # Load the wav2vec2 model and tokenizer
@@ -16,11 +16,11 @@ tokenizer = Wav2Vec2Tokenizer.from_pretrained(model_name)
 
 # Load the audio file
 audio_file_path = "/Users/filipdahlberg/gitrepos/ml-playground/transcribe-youtube/audio.mp3"
-waveform, sample_rate = librosa.load(audio_file_path, sr=None, mono=True)
+waveform, sample_rate = sf.read(audio_file_path, dtype='float32')
 
 # Resample if necessary
 if sample_rate != model.feature_extractor.sampling_rate:
-    resampler = librosa.resample(waveform, orig_sr=sample_rate, target_sr=model.feature_extractor.sampling_rate)
+    resampler = sf.resample(waveform, model.feature_extractor.sampling_rate / sample_rate)
     waveform = torch.FloatTensor(resampler)
 
 # Preprocess the audio waveform
