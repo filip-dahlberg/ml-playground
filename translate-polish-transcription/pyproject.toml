@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "pl-translator"
+version = "0.1.0"
+description = "translates polish text to english"
+authors = ["Filp"]
+readme = "README.md"
+packages = [{include = "pl_translator"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+transformers = "^4.27.3"
+sentencepiece = "^0.1.97"
+torch = "^2.0.0"
+sacremoses = "^0.0.53"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
