@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "huggingsound-transcribe"
+version = "0.1.0"
+description = ""
+authors = ["Filip Dahlberg <filip.dahlberg@maersk.com>"]
+readme = "README.md"
+packages = [{include = "huggingsound_transcribe"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+huggingsound = "^0.1.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

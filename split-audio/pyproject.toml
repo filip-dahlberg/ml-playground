@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "split-audio"
+version = "0.1.0"
+description = ""
+authors = ["Filip Dahlberg <filip.dahlberg@maersk.com>"]
+readme = "README.md"
+packages = [{include = "split_audio"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pydub = "^0.25.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
